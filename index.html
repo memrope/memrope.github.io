@@ -119,16 +119,18 @@
             gap: 20px;
         }
 
-        .author {
+        a.author {
             font-weight: 500;
             transition: color 0.2s;
+            text-decoration: none;
+            color: var(--primary-color);
         }
 
-        .author:hover {
+        a.author:hover {
             color: var(--accent-color);
         }
 
-        .author sup {
+        a.author sup {
             font-size: 0.8em;
             color: var(--secondary-color);
         }
@@ -172,16 +174,42 @@
         }
 
         .btn.primary {
-            background: var(--accent-gradient);
+            background: linear-gradient(135deg, #3b82f6, #6366f1); /* Bright Blue to Indigo */
             color: white;
             border: none;
             box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
         }
 
         .btn.primary:hover {
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4);
+            transform: translateY(-3px) scale(1.02);
+            background: linear-gradient(135deg, #60a5fa, #818cf8);
+        }
+
+        .btn.secondary {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6); /* Indigo to Violet */
+            color: white;
+            border: none;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn.secondary:hover {
             box-shadow: 0 10px 25px rgba(139, 92, 246, 0.4);
             transform: translateY(-3px) scale(1.02);
-            background: linear-gradient(135deg, #4f91ff, #996bf7, #f05da8);
+            background: linear-gradient(135deg, #818cf8, #a78bfa);
+        }
+
+        .btn.tertiary {
+            background: linear-gradient(135deg, #8b5cf6, #d946ef); /* Violet to Fuchsia/Purple */
+            color: white;
+            border: none;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+        }
+
+        .btn.tertiary:hover {
+            box-shadow: 0 10px 25px rgba(217, 70, 239, 0.4);
+            transform: translateY(-3px) scale(1.02);
+            background: linear-gradient(135deg, #a78bfa, #e879f9);
         }
 
         section {
@@ -441,24 +469,106 @@
                 padding: 40px 15px;
             }
         }
+        /* Navigation Bar Styles */
+        .navbar {
+            position: fixed;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 20px 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 1000;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-item {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 10px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-item::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            left: 100%;
+            top: 50%;
+            transform: translateY(-50%) translateX(10px);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .nav-item:hover {
+            color: var(--accent-color);
+            background: rgba(255, 255, 255, 0.05);
+            transform: scale(1.1);
+        }
+
+        .nav-item:hover::after {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(-50%) translateX(15px);
+        }
+
+        @media (max-width: 1400px) {
+            .navbar {
+                display: none;
+            }
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
     </style>
     <script src="content/config.js"></script>
 </head>
 
 <body>
 
+    <nav class="navbar">
+        <a href="#header" class="nav-item" data-tooltip="Top"><i class="fas fa-arrow-up"></i></a>
+        <a href="#teaser" class="nav-item" data-tooltip="Teaser"><i class="fas fa-play-circle"></i></a>
+        <a href="#abstract" class="nav-item" data-tooltip="Abstract"><i class="fas fa-book-open"></i></a>
+        <a href="#method" class="nav-item" data-tooltip="Methodology"><i class="fas fa-project-diagram"></i></a>
+        <a href="#comparisons" class="nav-item" data-tooltip="Comparisons"><i class="fas fa-video"></i></a>
+        <a href="#conclusion" class="nav-item" data-tooltip="Conclusion"><i class="fas fa-flag-checkered"></i></a>
+        <a href="#citation" class="nav-item" data-tooltip="Citation"><i class="fas fa-quote-left"></i></a>
+    </nav>
+
     <div class="container">
-        <header>
+        <header id="header">
             <div class="title-container">
                 <img src="content/memrope_logo.png" alt="MemRoPE Logo" class="logo">
                 <h1>MemRoPE: Training-Free Infinite Video Generation via Evolving Memory Tokens</h1>
             </div>
 
             <div class="authors">
-                <span class="author">Youngrae Kim<sup>*</sup></span>
-                <span class="author">Qixin Hu<sup>*</sup></span>
-                <span class="author">C.-C. Jay Kuo</span>
-                <span class="author">Peter A. Beerel</span>
+                <a href="https://scholar.google.com/citations?user=cKzTWrIAAAAJ&hl=en&oi=ao" class="author" target="_blank">Youngrae Kim<sup>*</sup></a>
+                <a href="https://scholar.google.com/citations?user=EqD5GP8AAAAJ&hl=en&oi=ao" class="author" target="_blank">Qixin Hu<sup>*</sup></a>
+                <a href="https://scholar.google.com/citations?user=81d60okAAAAJ&hl=en&oi=sra" class="author" target="_blank">C.-C. Jay Kuo</a>
+                <a href="https://scholar.google.com/citations?user=JSdH7PsAAAAJ&hl=en&oi=ao" class="author" target="_blank">Peter A. Beerel</a>
             </div>
 
             <div class="affiliations">
@@ -470,27 +580,32 @@
                 <a href="content/paper.pdf" class="btn primary" target="_blank">
                     <i class="fas fa-file-pdf"></i> Paper
                 </a>
-                <a href="https://github.com/memrope/memrope.github.io" class="btn">
+                <a href="https://github.com/memrope/memrope.github.io" class="btn secondary">
                     <i class="fab fa-github"></i> Code (Soon)
+                </a>
+                <a href="#citation" class="btn tertiary">
+                    <i class="fas fa-quote-left"></i> Citation (BibTeX)
                 </a>
             </div>
         </header>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 30px;">
-            <div class="teaser-video" style="margin-bottom: 0;">
-                <!-- Replace with actual video tag -->
-                <span style="padding: 20px;">[Example 1 Video Placeholder]</span>
+        <section id="teaser" style="background: transparent; box-shadow: none; border: none; padding: 0 0 50px 0;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 30px;">
+                <div class="teaser-video" style="margin-bottom: 0;">
+                    <!-- Replace with actual video tag -->
+                    <span style="padding: 20px;">[Example 1 Video Placeholder]</span>
+                </div>
+                <div class="teaser-video" style="margin-bottom: 0;">
+                    <!-- Replace with actual video tag -->
+                    <span style="padding: 20px;">[Example 2 Video Placeholder]</span>
+                </div>
             </div>
-            <div class="teaser-video" style="margin-bottom: 0;">
-                <!-- Replace with actual video tag -->
-                <span style="padding: 20px;">[Example 2 Video Placeholder]</span>
-            </div>
-        </div>
-        <p class="teaser-caption">
-            <strong>Figure 1.</strong> Training-free unbounded video generation examples. Our MemRoPE requires no
-            additional training and enables unlimited generation with a fixed-size KV cache. We demonstrate continuous
-            long-form generation processes that perfectly preserve both subject identity and visual fidelity throughout.
-        </p>
+            <p class="teaser-caption">
+                <strong>Figure 1.</strong> Training-free unbounded video generation examples. Our MemRoPE requires no
+                additional training and enables unlimited generation with a fixed-size KV cache. We demonstrate continuous
+                long-form generation processes that perfectly preserve both subject identity and visual fidelity throughout.
+            </p>
+        </section>
 
 
         <section id="abstract">
@@ -583,6 +698,28 @@
 
 
             <div id="comparisons-container"></div>
+        </section>
+
+        <section id="conclusion">
+            <h2>Conclusion</h2>
+            <p>
+                We have presented MemRoPE, a training-free inference framework that enables unbounded video generation without suffering from memory constraints or identity degradation. By systematically decoupling the positional embeddings from the KV cache state and aggregating the historical keys through exponential moving averages, we elegantly compress global identity and local dynamics into a finite set of memory tokens.
+            </p>
+            <p>
+                Our comprehensive evaluations verify that MemRoPE maintains robust subject consistency, structural coherence, and visual quality over significantly extended time horizons—such as a continuous one hour of generated video—outperforming existing truncation and static anchoring baselines. MemRoPE pushes the frontier of infinite generation capabilities for autoregressive diffusion models without incurring any additional training costs.
+            </p>
+        </section>
+
+        <section id="citation">
+            <h2>Citation</h2>
+            <div style="background: rgba(0,0,0,0.3); padding: 20px; border-radius: 12px; border: 1px solid var(--card-border); overflow-x: auto; margin-top: 20px;">
+                <pre style="margin: 0; font-family: 'Courier New', Courier, monospace; font-size: 0.95rem; color: #a5b4fc; text-align: left;"><code>@article{kim2026memrope,
+  title={MemRoPE: Training-Free Infinite Video Generation via Evolving Memory Tokens},
+  author={Kim, Youngrae and Hu, Qixin and Kuo, C.-C. Jay and Beerel, Peter A.},
+  journal={arXiv preprint},
+  year={2026}
+}</code></pre>
+            </div>
         </section>
 
         <footer>
