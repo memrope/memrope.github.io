@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,19 +8,23 @@
     <!-- Google Fonts for modern typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <!-- FontAwesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #1a1a1a;
-            --secondary-color: #4a4a4a;
-            --accent-color: #3b82f6; /* Modern cool blue */
-            --bg-color: #fafafa;
-            --card-bg: #ffffff;
-            --text-color: #333333;
-            --border-color: #e5e7eb;
-            --container-width: 900px;
+            /* Futuristic Dark Theme */
+            --primary-color: #f8fafc;
+            --secondary-color: #94a3b8;
+            --accent-color: #3b82f6;
+            --accent-gradient: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899);
+            --bg-color: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.6);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --text-color: #cbd5e1;
+            --container-width: 1100px;
         }
 
         * {
@@ -29,130 +34,202 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             background-color: var(--bg-color);
+            background-image:
+                radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(139, 92, 246, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(236, 72, 153, 0.1) 0px, transparent 50%);
+            background-attachment: fixed;
             color: var(--text-color);
-            line-height: 1.6;
+            line-height: 1.7;
             -webkit-font-smoothing: antialiased;
         }
 
         .container {
             max-width: var(--container-width);
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 60px 20px;
         }
 
         header {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 70px;
+            animation: fadeInDown 0.8s ease-out;
         }
-        
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         .title-container {
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 20px;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             flex-direction: column;
         }
 
         .logo {
-            width: 200px;
+            width: 280px;
             height: auto;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4), inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .logo:hover {
+            transform: scale(1.08) translateY(-5px);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.6), inset 0 0 0 1px rgba(255, 255, 255, 0.8);
         }
 
         h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--primary-color);
+            font-family: 'Outfit', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
             margin-bottom: 0;
             line-height: 1.2;
             text-align: center;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
         }
 
         .authors {
-            font-size: 1.1rem;
-            color: var(--secondary-color);
-            margin-bottom: 5px;
+            font-size: 1.15rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 15px;
+            gap: 20px;
         }
 
         .author {
             font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .author:hover {
+            color: var(--accent-color);
         }
 
         .author sup {
             font-size: 0.8em;
-            color: #888;
+            color: var(--secondary-color);
         }
 
         .affiliations {
-            font-size: 1rem;
-            color: #666;
-            margin-bottom: 25px;
+            font-size: 1.05rem;
+            color: var(--secondary-color);
+            margin-bottom: 30px;
         }
 
         .links {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            margin-bottom: 40px;
+            gap: 20px;
+            margin-bottom: 50px;
         }
 
         .btn {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            padding: 10px 24px;
-            background-color: var(--card-bg);
+            gap: 10px;
+            padding: 12px 28px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             color: var(--primary-color);
             text-decoration: none;
-            border-radius: 99px; /* Pill shape */
+            border-radius: 99px;
             font-weight: 600;
-            font-size: 0.95rem;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            transition: all 0.2s ease;
+            font-size: 1rem;
+            border: 1px solid var(--card-border);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            border-color: #cbd5e1;
-            color: var(--accent-color);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.2);
+            border-color: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.1);
         }
 
         .btn.primary {
-            background-color: var(--primary-color);
+            background: var(--accent-gradient);
             color: white;
             border: none;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
         }
 
         .btn.primary:hover {
-            background-color: var(--accent-color);
-            color: white;
+            box-shadow: 0 10px 25px rgba(139, 92, 246, 0.4);
+            transform: translateY(-3px) scale(1.02);
+            background: linear-gradient(135deg, #4f91ff, #996bf7, #f05da8);
         }
 
         section {
-            margin-bottom: 60px;
-            background-color: var(--card-bg);
-            padding: 40px;
-            border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
-            border: 1px solid var(--border-color);
+            margin-bottom: 80px;
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            padding: 50px;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--card-border);
+            animation: fadeInUp 0.8s ease-out backwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        section:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        section:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+
+        section:nth-child(4) {
+            animation-delay: 0.3s;
         }
 
         h2 {
-            font-size: 1.8rem;
-            font-weight: 600;
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 700;
             color: var(--primary-color);
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             text-align: center;
             position: relative;
-            padding-bottom: 10px;
+            padding-bottom: 15px;
+            letter-spacing: -0.01em;
         }
 
         h2::after {
@@ -161,25 +238,33 @@
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background-color: var(--accent-color);
+            width: 80px;
+            height: 4px;
+            background: var(--accent-gradient);
             border-radius: 2px;
         }
 
         p {
-            font-size: 1.05rem;
-            color: #4b5563;
-            margin-bottom: 15px;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
             text-align: justify;
+        }
+
+        ul {
+            color: var(--text-color);
+        }
+
+        strong {
+            color: var(--primary-color);
+            font-weight: 600;
         }
 
         .teaser-video {
             width: 100%;
-            border-radius: 12px;
+            border-radius: 20px;
             overflow: hidden;
             margin-bottom: 30px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
             background-color: #000;
             aspect-ratio: 16 / 9;
             display: flex;
@@ -188,43 +273,67 @@
             color: #fff;
             font-size: 1.2rem;
             text-align: center;
-            border: 1px solid #333;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        .teaser-video::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            pointer-events: none;
         }
 
         .teaser-caption {
-            font-size: 0.95rem;
-            color: #666;
+            font-size: 1rem;
+            color: var(--secondary-color);
             text-align: center;
-            margin-bottom: 40px;
-            font-style: italic;
+            margin-bottom: 60px;
+            padding: 0 20px;
         }
 
         /* Comparison Section Styles */
         .comparison-duration-title {
-            font-size: 1.5rem;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.8rem;
             color: var(--primary-color);
-            margin: 40px 0 20px 0;
+            margin: 50px 0 25px 0;
             text-align: left;
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 10px;
+            border-bottom: 1px solid var(--card-border);
+            padding-bottom: 15px;
+            font-weight: 600;
         }
 
         .method-headers {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-            margin-bottom: 15px;
+            gap: 20px;
+            margin-bottom: 20px;
         }
 
         .method-header {
             text-align: center;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 15px 10px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            transition: transform 0.2s ease;
+        }
+
+        .method-header:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.02);
+            border-color: rgba(255, 255, 255, 0.08);
         }
 
         .method-name {
+            font-family: 'Outfit', sans-serif;
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             color: var(--primary-color);
-            margin-bottom: 2px;
+            margin-bottom: 4px;
         }
 
         .method-fps {
@@ -236,8 +345,8 @@
         .comparison-row {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-            margin-bottom: 15px;
+            gap: 20px;
+            margin-bottom: 20px;
         }
 
         .comparison-cell {
@@ -247,297 +356,323 @@
         .video-container {
             width: 100%;
             aspect-ratio: 16 / 9;
-            background-color: #e2e8f0;
-            border-radius: 8px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 12px;
             overflow: hidden;
             position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #64748b;
+            color: var(--secondary-color);
             font-weight: 500;
             font-size: 0.9rem;
-            border: 1px solid var(--border-color);
+            border: 1px solid var(--card-border);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        .video-container:hover {
+            transform: scale(1.03);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 255, 255, 0.2);
+            z-index: 10;
         }
 
         .time-badge {
             position: absolute;
-            bottom: 8px;
-            right: 8px;
-            background-color: rgba(0, 0, 0, 0.7);
-            color: white;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-size: 0.8rem;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.85rem;
             font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: all 0.2s;
+        }
+
+        .video-container:hover .time-badge {
+            background: var(--accent-color);
+            border-color: transparent;
         }
 
         .divider {
             height: 1px;
-            background-color: var(--border-color);
-            margin: 40px 0;
+            background: linear-gradient(90deg, transparent, var(--card-border), transparent);
+            margin: 50px 0;
             width: 100%;
-        }
-
-        .results-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
-        }
-
-        .video-card {
-            border-radius: 12px;
-            overflow: hidden;
-            background: var(--bg-color);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            border: 1px solid var(--border-color);
-            transition: transform 0.3s ease;
-        }
-
-        .video-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-        }
-
-        .video-wrapper {
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            background-color: #e2e8f0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #64748b;
-            font-weight: 500;
-        }
-
-        .video-info {
-            padding: 15px 20px;
-        }
-
-        .video-title {
-            font-weight: 600;
-            font-size: 1.1rem;
-            color: var(--primary-color);
-            margin-bottom: 5px;
-        }
-
-        .video-prompt {
-            font-size: 0.9rem;
-            color: var(--secondary-color);
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
         }
 
         footer {
             text-align: center;
-            padding: 30px 0;
-            color: #9ca3af;
-            font-size: 0.9rem;
-            margin-top: 40px;
-            border-top: 1px solid var(--border-color);
+            padding: 40px 0;
+            color: var(--secondary-color);
+            font-size: 0.95rem;
+            margin-top: 60px;
+            border-top: 1px solid var(--card-border);
         }
 
-        @media (max-width: 900px) {
-            .method-headers, .comparison-row {
+        @media (max-width: 950px) {
+
+            .method-headers,
+            .comparison-row {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
 
         @media (max-width: 600px) {
-            h1 { font-size: 2rem; }
-            section { padding: 25px; }
-            .results-grid { grid-template-columns: 1fr; }
-            .method-headers, .comparison-row {
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            section {
+                padding: 30px 20px;
+            }
+
+            .method-headers,
+            .comparison-row {
                 grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 40px 15px;
             }
         }
     </style>
     <script src="content/config.js"></script>
 </head>
+
 <body>
 
-<div class="container">
-    <header>
-        <div class="title-container">
-            <img src="content/memrope_logo.png" alt="MemRoPE Logo" class="logo">
-            <h1>MemRoPE: Training-Free Infinite Video Generation via Evolving Memory Tokens</h1>
-        </div>
-        
-        <div class="authors">
-            <span class="author">Youngrae Kim<sup>*</sup></span>
-            <span class="author">Qixin Hu<sup>*</sup></span>
-            <span class="author">C.-C. Jay Kuo</span>
-            <span class="author">Peter A. Beerel</span>
-        </div>
-        
-        <div class="affiliations">
-            <span>University of Southern California</span><br>
-            <span style="font-size: 0.9em; color: #888;"><sup>*</sup>Equal Contribution</span>
-        </div>
+    <div class="container">
+        <header>
+            <div class="title-container">
+                <img src="content/memrope_logo.png" alt="MemRoPE Logo" class="logo">
+                <h1>MemRoPE: Training-Free Infinite Video Generation via Evolving Memory Tokens</h1>
+            </div>
 
-        <div class="links">
-            <a href="content/paper.pdf" class="btn primary" target="_blank">
-                <i class="fas fa-file-pdf"></i> Paper
-            </a>
-            <a href="https://github.com/memrope/memrope.github.io" class="btn">
-                <i class="fab fa-github"></i> Code (Soon)
-            </a>
-        </div>
-    </header>
+            <div class="authors">
+                <span class="author">Youngrae Kim<sup>*</sup></span>
+                <span class="author">Qixin Hu<sup>*</sup></span>
+                <span class="author">C.-C. Jay Kuo</span>
+                <span class="author">Peter A. Beerel</span>
+            </div>
 
-    <div class="teaser-video">
-        <!-- Replace with actual video tag -->
-        <span style="padding: 20px;">[Main Teaser Video Placeholder: 1-hour generation simulation]</span>
+            <div class="affiliations">
+                <span>University of Southern California</span><br>
+                <span style="font-size: 0.9em; color: #888;"><sup>*</sup>Equal Contribution</span>
+            </div>
+
+            <div class="links">
+                <a href="content/paper.pdf" class="btn primary" target="_blank">
+                    <i class="fas fa-file-pdf"></i> Paper
+                </a>
+                <a href="https://github.com/memrope/memrope.github.io" class="btn">
+                    <i class="fab fa-github"></i> Code (Soon)
+                </a>
+            </div>
+        </header>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 30px;">
+            <div class="teaser-video" style="margin-bottom: 0;">
+                <!-- Replace with actual video tag -->
+                <span style="padding: 20px;">[Example 1 Video Placeholder]</span>
+            </div>
+            <div class="teaser-video" style="margin-bottom: 0;">
+                <!-- Replace with actual video tag -->
+                <span style="padding: 20px;">[Example 2 Video Placeholder]</span>
+            </div>
+        </div>
+        <p class="teaser-caption">
+            <strong>Figure 1.</strong> Training-free unbounded video generation examples. Our MemRoPE requires no
+            additional training and enables unlimited generation with a fixed-size KV cache. We demonstrate continuous
+            long-form generation processes that perfectly preserve both subject identity and visual fidelity throughout.
+        </p>
+
+
+        <section id="abstract">
+            <h2>Abstract</h2>
+            <p>
+                Autoregressive diffusion enables real-time frame streaming, yet existing sliding-window caches discard
+                past context, causing fidelity degradation, identity drift, and motion stagnation over long horizons.
+                Current approaches preserve a fixed set of early tokens as attention sinks, but this static anchor
+                cannot reflect the evolving content of a growing video.
+            </p>
+            <p>
+                We introduce <strong>MemRoPE</strong>, a training-free framework with two co-designed components.
+                <strong>Memory Tokens</strong> continuously compress all past keys into dual long-term and short-term
+                streams via exponential moving averages, maintaining both global identity and recent dynamics within a
+                fixed-size cache. <strong>Online RoPE Indexing</strong> caches unrotated keys and applies positional
+                embeddings dynamically at attention time, ensuring the aggregation is free of conflicting positional
+                phases.
+            </p>
+            <p>
+                These two mechanisms are mutually enabling: positional decoupling makes temporal aggregation
+                well-defined, while aggregation makes fixed-size caching viable for unbounded generation. Extensive
+                experiments validate that MemRoPE outperforms existing methods in temporal coherence, visual fidelity,
+                and subject consistency across minute- to hour-scale generation.
+            </p>
+        </section>
+
+        <section id="method">
+            <h2>Methodology</h2>
+            <p>
+                MemRoPE tackles the long-form video generation problem by solving the inherent limitations of fixed-size
+                KV caches in autoregressive models. Extending past context indefinitely is memory-prohibitive, while
+                aggressively truncating context leads to identity loss.
+            </p>
+            <p>
+                Our solution relies on two key innovations:
+            </p>
+            <ul
+                style="list-style-type: none; padding: 0; margin-bottom: 25px; display: flex; flex-direction: column; gap: 15px;">
+                <li
+                    style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid var(--accent-color); padding: 18px 20px; border-radius: 0 12px 12px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                    <strong
+                        style="color: var(--accent-color); font-size: 1.2rem; display: block; margin-bottom: 8px;">Memory
+                        Tokens:</strong>
+                    <span
+                        style="color: var(--primary-color); font-size: 1.1rem; line-height: 1.6; font-weight: 500;">Instead
+                        of dropping old tokens or keeping static anchors, we maintain a fixed number of 'memory tokens'
+                        that continuously absorb information from new frames using an Exponential Moving Average (EMA).
+                        This provides a compressed, evolving summary of the entire video history.</span>
+                </li>
+                <li
+                    style="background: rgba(139, 92, 246, 0.1); border-left: 4px solid #8b5cf6; padding: 18px 20px; border-radius: 0 12px 12px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                    <strong style="color: #8b5cf6; font-size: 1.2rem; display: block; margin-bottom: 8px;">Online RoPE
+                        Indexing:</strong>
+                    <span
+                        style="color: var(--primary-color); font-size: 1.1rem; line-height: 1.6; font-weight: 500;">Standard
+                        Rotary Positional Embeddings (RoPE) entangle positional information with the keys, making EMA
+                        aggregation destructive due to phase cancellation. We decouple positional embeddings from the
+                        cached keys, applying RoPE only online during the attention calculation, enabling clean temporal
+                        aggregation.</span>
+                </li>
+            </ul>
+
+            <div style="text-align: center; margin: 40px 0 20px 0;">
+                <img src="content/figure_method.png" alt="MemRoPE Methodology"
+                    style="max-width: 100%; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); background: white; padding: 10px;">
+                <p style="margin-top: 20px; font-size: 1.05rem; color: var(--secondary-color);"><strong>Figure
+                        2.</strong> Overview of the MemRoPE framework.</p>
+            </div>
+        </section>
+
+        <section id="comparisons">
+            <h2>Comparisons</h2>
+            <p style="text-align: center; margin-bottom: 5px;">
+                MemRoPE exhibits strong prompt compliance, smooth transitions, and high long-range consistency while
+                sustaining high throughput.
+            </p>
+            <p style="text-align: center; margin-bottom: 5px; font-size: 0.95rem;">
+                Compared to ours, SkyReels-V2 shows weaker long-range consistency and lower throughput.<br>
+                Self-Forcing faces quality degradation on longer videos.
+            </p>
+
+            <!-- Play speed controls (visual only for now) -->
+            <div style="text-align: center; margin-bottom: 40px; margin-top: 20px;">
+                <span style="font-weight: 600; margin-right: 15px;">Play speed:</span>
+                <button
+                    style="background: #84cc16; color: white; border: none; padding: 5px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; margin-right: 5px;">x1</button>
+                <button
+                    style="background: white; color: #84cc16; border: 1px solid #84cc16; padding: 5px 15px; border-radius: 5px; cursor: pointer; font-weight: bold;">x2</button>
+            </div>
+
+
+            <div id="comparisons-container"></div>
+        </section>
+
+        <footer>
+            <p>&copy; 2026 MemRoPE Project. Webpage template design inspired by recent top-tier vision conferences.</p>
+        </footer>
     </div>
-    <p class="teaser-caption">
-        <strong>Figure 1.</strong> Training-free unbounded video generation. Our MemRoPE requires no additional training and enables unlimited generation with a fixed-size KV cache. We demonstrate a continuous one-hour generation process that perfectly preserves both subject identity and visual fidelity throughout.
-    </p>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const config = window.MemRoPEConfig;
+            const container = document.getElementById('comparisons-container');
+            if (!config || !container) return;
 
-    <section id="abstract">
-        <h2>Abstract</h2>
-        <p>
-            Autoregressive diffusion enables real-time frame streaming, yet existing sliding-window caches discard past context, causing fidelity degradation, identity drift, and motion stagnation over long horizons. Current approaches preserve a fixed set of early tokens as attention sinks, but this static anchor cannot reflect the evolving content of a growing video. 
-        </p>
-        <p>
-            We introduce <strong>MemRoPE</strong>, a training-free framework with two co-designed components. <strong>Memory Tokens</strong> continuously compress all past keys into dual long-term and short-term streams via exponential moving averages, maintaining both global identity and recent dynamics within a fixed-size cache. <strong>Online RoPE Indexing</strong> caches unrotated keys and applies positional embeddings dynamically at attention time, ensuring the aggregation is free of conflicting positional phases. 
-        </p>
-        <p>
-            These two mechanisms are mutually enabling: positional decoupling makes temporal aggregation well-defined, while aggregation makes fixed-size caching viable for unbounded generation. Extensive experiments validate that MemRoPE outperforms existing methods in temporal coherence, visual fidelity, and subject consistency across minute- to hour-scale generation.
-        </p>
-    </section>
+            config.comparisons.forEach(comp => {
+                // Title
+                const title = document.createElement('h3');
+                title.className = 'comparison-duration-title';
+                title.textContent = comp.duration;
+                container.appendChild(title);
 
-    <section id="method">
-        <h2>Methodology</h2>
-        <p>
-            MemRoPE tackles the long-form video generation problem by solving the inherent limitations of fixed-size KV caches in autoregressive models. Extending past context indefinitely is memory-prohibitive, while aggressively truncating context leads to identity loss.
-        </p>
-        <p>
-            Our solution relies on two key innovations:
-        </p>
-        <ul style="padding-left: 20px; font-size: 1.05rem; color: #4b5563; margin-bottom: 15px;">
-            <li style="margin-bottom: 10px;"><strong>Memory Tokens:</strong> Instead of dropping old tokens or keeping static anchors, we maintain a fixed number of 'memory tokens' that continuously absorb information from new frames using an Exponential Moving Average (EMA). This provides a compressed, evolving summary of the entire video history.</li>
-            <li><strong>Online RoPE Indexing:</strong> Standard Rotary Positional Embeddings (RoPE) entangle positional information with the keys, making EMA aggregation destructive due to phase cancellation. We decouple positional embeddings from the cached keys, applying RoPE only online during the attention calculation, enabling clean temporal aggregation.</li>
-        </ul>
-
-        <div style="text-align: center; margin: 40px 0 20px 0;">
-            <img src="content/figure_method.png" alt="MemRoPE Methodology" style="max-width: 100%; border-radius: 8px;">
-            <p style="margin-top: 15px; font-size: 0.95rem; color: #666;"><strong>Figure 2.</strong> Overview of the MemRoPE framework.</p>
-        </div>
-    </section>
-
-    <section id="comparisons">
-        <h2>Comparisons</h2>
-        <p style="text-align: center; margin-bottom: 5px;">
-            MemRoPE exhibits strong prompt compliance, smooth transitions, and high long-range consistency while sustaining high throughput.
-        </p>
-        <p style="text-align: center; margin-bottom: 5px; font-size: 0.95rem;">
-            Compared to ours, SkyReels-V2 shows weaker long-range consistency and lower throughput.<br>
-            Self-Forcing faces quality degradation on longer videos.
-        </p>
-
-        <!-- Play speed controls (visual only for now) -->
-        <div style="text-align: center; margin-bottom: 40px; margin-top: 20px;">
-            <span style="font-weight: 600; margin-right: 15px;">Play speed:</span>
-            <button style="background: #84cc16; color: white; border: none; padding: 5px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; margin-right: 5px;">x1</button>
-            <button style="background: white; color: #84cc16; border: 1px solid #84cc16; padding: 5px 15px; border-radius: 5px; cursor: pointer; font-weight: bold;">x2</button>
-        </div>
-
-
-        <div id="comparisons-container"></div>
-    </section>
-
-    <footer>
-        <p>&copy; 2026 MemRoPE Project. Webpage template design inspired by recent top-tier vision conferences.</p>
-    </footer>
-</div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const config = window.MemRoPEConfig;
-        const container = document.getElementById('comparisons-container');
-        if (!config || !container) return;
-
-        config.comparisons.forEach(comp => {
-            // Title
-            const title = document.createElement('h3');
-            title.className = 'comparison-duration-title';
-            title.textContent = comp.duration;
-            container.appendChild(title);
-
-            // Headers
-            const headersDiv = document.createElement('div');
-            headersDiv.className = 'method-headers';
-            config.methods.forEach(method => {
-                const header = document.createElement('div');
-                header.className = 'method-header';
-                
-                const nameDiv = document.createElement('div');
-                nameDiv.className = 'method-name';
-                nameDiv.textContent = method.title;
-                if (method.highlight) nameDiv.style.color = 'var(--accent-color)';
-                
-                const fpsDiv = document.createElement('div');
-                fpsDiv.className = 'method-fps';
-                if (method.fps) {
-                    fpsDiv.textContent = `Generation FPS: ${method.fps}`;
-                }
-                
-                header.appendChild(nameDiv);
-                header.appendChild(fpsDiv);
-                headersDiv.appendChild(header);
-            });
-            container.appendChild(headersDiv);
-
-            // Examples
-            comp.examples.forEach(example => {
-                const row = document.createElement('div');
-                row.className = 'comparison-row';
-                
+                // Headers
+                const headersDiv = document.createElement('div');
+                headersDiv.className = 'method-headers';
                 config.methods.forEach(method => {
-                    const cell = document.createElement('div');
-                    cell.className = 'comparison-cell';
-                    
-                    const cellContent = example.videos && example.videos[method.id] ? example.videos[method.id] : '';
+                    const header = document.createElement('div');
+                    header.className = 'method-header';
 
-                    let innerHTML = '';
-                    if (cellContent) {
-                        innerHTML = `
+                    const nameDiv = document.createElement('div');
+                    nameDiv.className = 'method-name';
+                    nameDiv.textContent = method.title;
+                    if (method.highlight) nameDiv.style.color = 'var(--accent-color)';
+
+                    const fpsDiv = document.createElement('div');
+                    fpsDiv.className = 'method-fps';
+                    if (method.fps) {
+                        fpsDiv.textContent = `Generation FPS: ${method.fps}`;
+                    }
+
+                    header.appendChild(nameDiv);
+                    header.appendChild(fpsDiv);
+                    headersDiv.appendChild(header);
+                });
+                container.appendChild(headersDiv);
+
+                // Examples
+                comp.examples.forEach(example => {
+                    const row = document.createElement('div');
+                    row.className = 'comparison-row';
+
+                    config.methods.forEach(method => {
+                        const cell = document.createElement('div');
+                        cell.className = 'comparison-cell';
+
+                        const cellContent = example.videos && example.videos[method.id] ? example.videos[method.id] : '';
+
+                        let innerHTML = '';
+                        if (cellContent) {
+                            innerHTML = `
                             <video src="${cellContent}" autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover;"></video>
                             <div class="time-badge">${comp.badge}</div>
                         `;
-                    } else {
-                        innerHTML = `
+                        } else {
+                            innerHTML = `
                             [Video Placeholder]
                             <div class="time-badge">${comp.badge}</div>
                         `;
-                    }
+                        }
 
-                    const videoContainer = document.createElement('div');
-                    videoContainer.className = 'video-container';
-                    videoContainer.innerHTML = innerHTML;
+                        const videoContainer = document.createElement('div');
+                        videoContainer.className = 'video-container';
+                        videoContainer.innerHTML = innerHTML;
 
-                    cell.appendChild(videoContainer);
-                    row.appendChild(cell);
+                        cell.appendChild(videoContainer);
+                        row.appendChild(cell);
+                    });
+                    container.appendChild(row);
                 });
-                container.appendChild(row);
+
+                // Add Divider
+                const divider = document.createElement('div');
+                divider.className = 'divider';
+                container.appendChild(divider);
             });
-            
-            // Add Divider
-            const divider = document.createElement('div');
-            divider.className = 'divider';
-            container.appendChild(divider);
+
+            // Remove last divider
+            if (container.lastChild && container.lastChild.className === 'divider') {
+                container.removeChild(container.lastChild);
+            }
         });
-        
-        // Remove last divider
-        if (container.lastChild && container.lastChild.className === 'divider') {
-            container.removeChild(container.lastChild);
-        }
-    });
-</script>
+    </script>
 </body>
+
 </html>
