@@ -1,10 +1,10 @@
 window.MemRoPEConfig = {
     // Define the methods to compare, their column details, and FPS.
     methods: [
-        { id: "sf", title: "Self-Forcing", fps: "17.0" },
-        { id: "sr", title: "SkyReels-V2", fps: "0.49" },
-        { id: "ll", title: "LongLive", fps: "20.7" },
-        { id: "ours", title: "Ours (MemRoPE)", fps: "19.5", highlight: true }
+        { id: "ll", title: "LongLive" },
+        { id: "ir", title: "Infinite-RoPE" },
+        { id: "df", title: "Deep Forcing" },
+        { id: "ours", title: "Ours (MemRoPE)", highlight: true }
     ],
 
     // Define the sections for the video length comparisons.
@@ -15,17 +15,33 @@ window.MemRoPEConfig = {
             examples: [
                 {
                     videos: {
-                        sf: "", // Add mp4 URL strings here, e.g., "content/videos/30s_sf_1.mp4"
-                        sr: "",
-                        ll: "",
+                        ll: "", // Add mp4 URL strings here, e.g., "content/videos/30s_ll_1.mp4"
+                        ir: "",
+                        df: "",
                         ours: ""
                     }
                 },
                 {
                     videos: {
-                        sf: "",
-                        sr: "",
                         ll: "",
+                        ir: "",
+                        df: "",
+                        ours: ""
+                    }
+                },
+                {
+                    videos: {
+                        ll: "",
+                        ir: "",
+                        df: "",
+                        ours: ""
+                    }
+                },
+                {
+                    videos: {
+                        ll: "",
+                        ir: "",
+                        df: "",
                         ours: ""
                     }
                 }
@@ -37,17 +53,33 @@ window.MemRoPEConfig = {
             examples: [
                 {
                     videos: {
-                        sf: "",
-                        sr: "",
                         ll: "",
+                        ir: "",
+                        df: "",
                         ours: ""
                     }
                 },
                 {
                     videos: {
-                        sf: "",
-                        sr: "",
                         ll: "",
+                        ir: "",
+                        df: "",
+                        ours: ""
+                    }
+                },
+                {
+                    videos: {
+                        ll: "",
+                        ir: "",
+                        df: "",
+                        ours: ""
+                    }
+                },
+                {
+                    videos: {
+                        ll: "",
+                        ir: "",
+                        df: "",
                         ours: ""
                     }
                 }
@@ -59,17 +91,33 @@ window.MemRoPEConfig = {
             examples: [
                 {
                     videos: {
-                        sf: "",
-                        sr: "",
                         ll: "",
+                        ir: "",
+                        df: "",
                         ours: ""
                     }
                 },
                 {
                     videos: {
-                        sf: "",
-                        sr: "",
                         ll: "",
+                        ir: "",
+                        df: "",
+                        ours: ""
+                    }
+                },
+                {
+                    videos: {
+                        ll: "",
+                        ir: "",
+                        df: "",
+                        ours: ""
+                    }
+                },
+                {
+                    videos: {
+                        ll: "",
+                        ir: "",
+                        df: "",
                         ours: ""
                     }
                 }

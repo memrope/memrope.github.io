@@ -573,7 +573,7 @@
 
             <div class="affiliations">
                 <span>University of Southern California</span><br>
-                <span style="font-size: 0.9em; color: #888;"><sup>*</sup>Equal Contribution</span>
+                <span><sup>*</sup>Equal Contribution</span>
             </div>
 
             <div class="links">
@@ -680,20 +680,21 @@
             <h2>Comparisons</h2>
             <p style="text-align: center; margin-bottom: 5px;">
                 MemRoPE exhibits strong prompt compliance, smooth transitions, and high long-range consistency while
-                sustaining high throughput.
+                enabling infinite video generation.
             </p>
             <p style="text-align: center; margin-bottom: 5px; font-size: 0.95rem;">
-                Compared to ours, SkyReels-V2 shows weaker long-range consistency and lower throughput.<br>
-                Self-Forcing faces quality degradation on longer videos.
+                Compared to ours, baseline methods such as LongLive, Infinite-RoPE, and Deep Forcing show weaker long-range consistency and face quality degradation on longer videos.
             </p>
 
-            <!-- Play speed controls (visual only for now) -->
-            <div style="text-align: center; margin-bottom: 40px; margin-top: 20px;">
+            <!-- Play speed controls -->
+            <div class="play-speed-controls" style="text-align: center; margin-bottom: 40px; margin-top: 20px;">
                 <span style="font-weight: 600; margin-right: 15px;">Play speed:</span>
-                <button
+                <button class="speed-btn active" data-speed="1"
                     style="background: #84cc16; color: white; border: none; padding: 5px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; margin-right: 5px;">x1</button>
-                <button
-                    style="background: white; color: #84cc16; border: 1px solid #84cc16; padding: 5px 15px; border-radius: 5px; cursor: pointer; font-weight: bold;">x2</button>
+                <button class="speed-btn" data-speed="2"
+                    style="background: white; color: #84cc16; border: 1px solid #84cc16; padding: 5px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; margin-right: 5px;">x2</button>
+                <button class="speed-btn" data-speed="4"
+                    style="background: white; color: #84cc16; border: 1px solid #84cc16; padding: 5px 15px; border-radius: 5px; cursor: pointer; font-weight: bold;">x4</button>
             </div>
 
 
@@ -797,7 +798,6 @@
                     });
                     container.appendChild(row);
                 });
-
                 // Add Divider
                 const divider = document.createElement('div');
                 divider.className = 'divider';
@@ -808,6 +808,40 @@
             if (container.lastChild && container.lastChild.className === 'divider') {
                 container.removeChild(container.lastChild);
             }
+
+            // Set up play speed controls
+            const speedButtons = document.querySelectorAll('.speed-btn');
+            let currentSpeed = 1;
+            
+            speedButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const speed = parseFloat(btn.dataset.speed);
+                    currentSpeed = speed;
+                    
+                    // Update styling
+                    speedButtons.forEach(b => {
+                        b.style.background = 'white';
+                        b.style.color = '#84cc16';
+                        b.style.border = '1px solid #84cc16';
+                        b.classList.remove('active');
+                    });
+                    
+                    btn.style.background = '#84cc16';
+                    btn.style.color = 'white';
+                    btn.style.border = 'none';
+                    btn.classList.add('active');
+                    
+                    // Update all videos' playback rate
+                    const videos = document.querySelectorAll('video');
+                    videos.forEach(video => {
+                        video.playbackRate = currentSpeed;
+                    });
+                });
+            });
+
+            // Ensure initially added videos respect the default speed
+            const initialVideos = document.querySelectorAll('video');
+            initialVideos.forEach(v => v.playbackRate = currentSpeed);
         });
     </script>
 </body>
