@@ -532,11 +532,7 @@
             transform: translateY(-50%) translateX(15px);
         }
 
-        @media (max-width: 1400px) {
-            .navbar {
-                display: none;
-            }
-        }
+
         
         html {
             scroll-behavior: smooth;
@@ -553,6 +549,7 @@
         <a href="#abstract" class="nav-item" data-tooltip="Abstract"><i class="fas fa-book-open"></i></a>
         <a href="#method" class="nav-item" data-tooltip="Methodology"><i class="fas fa-project-diagram"></i></a>
         <a href="#comparisons" class="nav-item" data-tooltip="Comparisons"><i class="fas fa-video"></i></a>
+        <a href="#ablations" class="nav-item" data-tooltip="Ablations"><i class="fas fa-vial"></i></a>
         <a href="#conclusion" class="nav-item" data-tooltip="Conclusion"><i class="fas fa-flag-checkered"></i></a>
         <a href="#citation" class="nav-item" data-tooltip="Citation"><i class="fas fa-quote-left"></i></a>
     </nav>
@@ -689,16 +686,35 @@
             <!-- Play speed controls -->
             <div class="play-speed-controls" style="text-align: center; margin-bottom: 40px; margin-top: 20px;">
                 <span style="font-weight: 600; margin-right: 15px;">Play speed:</span>
-                <button class="speed-btn active" data-speed="1"
+                <button class="comp-speed-btn active" data-speed="1"
                     style="background: #84cc16; color: white; border: none; padding: 5px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; margin-right: 5px;">x1</button>
-                <button class="speed-btn" data-speed="2"
+                <button class="comp-speed-btn" data-speed="2"
                     style="background: white; color: #84cc16; border: 1px solid #84cc16; padding: 5px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; margin-right: 5px;">x2</button>
-                <button class="speed-btn" data-speed="4"
+                <button class="comp-speed-btn" data-speed="4"
                     style="background: white; color: #84cc16; border: 1px solid #84cc16; padding: 5px 15px; border-radius: 5px; cursor: pointer; font-weight: bold;">x4</button>
             </div>
 
-
             <div id="comparisons-container"></div>
+        </section>
+
+        <section id="ablations">
+            <h2>Ablation Study</h2>
+            <p style="text-align: center; margin-bottom: 25px;">
+                We ablate the two streams of MemRoPE to validate their individual contributions.
+            </p>
+
+            <!-- Play speed controls -->
+            <div class="play-speed-controls" style="text-align: center; margin-bottom: 40px; margin-top: 20px;">
+                <span style="font-weight: 600; margin-right: 15px;">Play speed:</span>
+                <button class="abl-speed-btn active" data-speed="1"
+                    style="background: #84cc16; color: white; border: none; padding: 5px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; margin-right: 5px;">x1</button>
+                <button class="abl-speed-btn" data-speed="2"
+                    style="background: white; color: #84cc16; border: 1px solid #84cc16; padding: 5px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; margin-right: 5px;">x2</button>
+                <button class="abl-speed-btn" data-speed="4"
+                    style="background: white; color: #84cc16; border: 1px solid #84cc16; padding: 5px 15px; border-radius: 5px; cursor: pointer; font-weight: bold;">x4</button>
+            </div>
+
+            <div id="ablations-container"></div>
         </section>
 
         <section id="conclusion">
@@ -809,39 +825,102 @@
                 container.removeChild(container.lastChild);
             }
 
+            // Add Ablations
+            const ablationsContainer = document.getElementById('ablations-container');
+            if (config.ablations && ablationsContainer) {
+                config.ablations.forEach(ablation => {
+                    // Title
+                    const title = document.createElement('h3');
+                    title.className = 'comparison-duration-title';
+                    title.textContent = ablation.duration;
+                    ablationsContainer.appendChild(title);
+
+                    // Create a 2x3 grid using 2 rows of 3 columns
+                    for (let i = 0; i < 2; i++) {
+                        const row = document.createElement('div');
+                        row.className = 'comparison-row';
+                        row.style.gridTemplateColumns = 'repeat(3, 1fr)'; // Override default 4 cols
+
+                        for (let j = 0; j < 3; j++) {
+                            const index = i * 3 + j;
+                            const example = ablation.examples && ablation.examples[index] ? ablation.examples[index] : { video: "" };
+                            
+                            const cell = document.createElement('div');
+                            cell.className = 'comparison-cell';
+
+                            let innerHTML = '';
+                            if (example.video) {
+                                innerHTML = `
+                                <video src="${example.video}" autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover;"></video>
+                                <div class="time-badge">${ablation.badge}</div>
+                            `;
+                            } else {
+                                innerHTML = `
+                                [Video Placeholder]
+                                <div class="time-badge">${ablation.badge}</div>
+                            `;
+                            }
+
+                            const videoContainer = document.createElement('div');
+                            videoContainer.className = 'video-container';
+                            videoContainer.innerHTML = innerHTML;
+
+                            cell.appendChild(videoContainer);
+                            row.appendChild(cell);
+                        }
+                        ablationsContainer.appendChild(row);
+                    }
+                    
+                    // Add Divider
+                    const divider = document.createElement('div');
+                    divider.className = 'divider';
+                    ablationsContainer.appendChild(divider);
+                });
+
+                // Remove last divider
+                if (ablationsContainer.lastChild && ablationsContainer.lastChild.className === 'divider') {
+                    ablationsContainer.removeChild(ablationsContainer.lastChild);
+                }
+            }
+
             // Set up play speed controls
-            const speedButtons = document.querySelectorAll('.speed-btn');
-            let currentSpeed = 1;
-            
-            speedButtons.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const speed = parseFloat(btn.dataset.speed);
-                    currentSpeed = speed;
-                    
-                    // Update styling
-                    speedButtons.forEach(b => {
-                        b.style.background = 'white';
-                        b.style.color = '#84cc16';
-                        b.style.border = '1px solid #84cc16';
-                        b.classList.remove('active');
-                    });
-                    
-                    btn.style.background = '#84cc16';
-                    btn.style.color = 'white';
-                    btn.style.border = 'none';
-                    btn.classList.add('active');
-                    
-                    // Update all videos' playback rate
-                    const videos = document.querySelectorAll('video');
-                    videos.forEach(video => {
-                        video.playbackRate = currentSpeed;
+            function setupSpeedControls(btnSelector, videoContainerSelector) {
+                const speedButtons = document.querySelectorAll(btnSelector);
+                let currentSpeed = 1;
+                
+                speedButtons.forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const speed = parseFloat(btn.dataset.speed);
+                        currentSpeed = speed;
+                        
+                        // Update styling
+                        speedButtons.forEach(b => {
+                            b.style.background = 'white';
+                            b.style.color = '#84cc16';
+                            b.style.border = '1px solid #84cc16';
+                            b.classList.remove('active');
+                        });
+                        
+                        btn.style.background = '#84cc16';
+                        btn.style.color = 'white';
+                        btn.style.border = 'none';
+                        btn.classList.add('active');
+                        
+                        // Update all videos' playback rate
+                        const videos = document.querySelectorAll(`${videoContainerSelector} video`);
+                        videos.forEach(video => {
+                            video.playbackRate = currentSpeed;
+                        });
                     });
                 });
-            });
 
-            // Ensure initially added videos respect the default speed
-            const initialVideos = document.querySelectorAll('video');
-            initialVideos.forEach(v => v.playbackRate = currentSpeed);
+                // Ensure initially added videos respect the default speed
+                const initialVideos = document.querySelectorAll(`${videoContainerSelector} video`);
+                initialVideos.forEach(v => v.playbackRate = currentSpeed);
+            }
+
+            setupSpeedControls('.comp-speed-btn', '#comparisons-container');
+            setupSpeedControls('.abl-speed-btn', '#ablations-container');
         });
     </script>
 </body>
