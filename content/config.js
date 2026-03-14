@@ -61,14 +61,22 @@ window.MemRoPEConfig = {
         }
     ],
 
-    // Define the ablation study comparisons (1 row x 4 methods, prompt 44, 60s, LongLive base).
+    // Define the ablation study comparisons (1 row x 4 methods, 60s, LongLive base).
     ablations: [
         {
             videos: {
-                none: "content/Ablation/NoMem/44-0_lora_2gpu.mp4",
-                long: "content/Ablation/LongOnly/44-0_lora_2gpu.mp4",
-                short: "content/Ablation/ShortOnly/44-0_lora_2gpu.mp4",
-                both: "content/Ablation/Both/44-0_lora_2gpu.mp4"
+                none: "content/Ablation/NoMem/1-0_lora.mp4",
+                long: "content/Ablation/LongOnly/1-0_lora.mp4",
+                short: "content/Ablation/ShortOnly/1-0_lora.mp4",
+                both: "content/Ablation/Both/1-0_lora.mp4"
+            }
+        },
+        {
+            videos: {
+                none: "content/Ablation/NoMem/7-0_lora.mp4",
+                long: "content/Ablation/LongOnly/7-0_lora.mp4",
+                short: "content/Ablation/ShortOnly/7-0_lora.mp4",
+                both: "content/Ablation/Both/7-0_lora.mp4"
             }
         }
     ],
