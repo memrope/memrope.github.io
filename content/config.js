@@ -109,42 +109,80 @@ window.MemRoPEConfig = {
         }
     ],
 
-    // Define the ablation study comparisons.
+    // Define the ablation study comparisons (6 rows x 3 methods).
     ablations: [
         {
-            duration: "Long Only",
-            badge: "Long",
-            examples: [
-                { video: "content/Ablation/LongOnly/rank0-14-0_lora.mp4" },
-                { video: "content/Ablation/LongOnly/rank0-15-0_lora.mp4" },
-                { video: "content/Ablation/LongOnly/rank0-16-0_lora.mp4" },
-                { video: "content/Ablation/LongOnly/rank0-17-0_lora.mp4" },
-                { video: "content/Ablation/LongOnly/rank0-18-0_lora.mp4" },
-                { video: "content/Ablation/LongOnly/rank0-19-0_lora.mp4" }
+            videos: {
+                long: "content/Ablation/LongOnly/rank0-14-0_lora.mp4",
+                short: "content/Ablation/ShortOnly/rank0-14-0_lora.mp4",
+                none: "content/Ablation/NoMem/rank0-14-0_lora.mp4"
+            }
+        },
+        {
+            videos: {
+                long: "content/Ablation/LongOnly/rank0-15-0_lora.mp4",
+                short: "content/Ablation/ShortOnly/rank0-15-0_lora.mp4",
+                none: "content/Ablation/NoMem/rank0-15-0_lora.mp4"
+            }
+        },
+        {
+            videos: {
+                long: "content/Ablation/LongOnly/rank0-16-0_lora.mp4",
+                short: "content/Ablation/ShortOnly/rank0-16-0_lora.mp4",
+                none: "content/Ablation/NoMem/rank0-16-0_lora.mp4"
+            }
+        },
+        {
+            videos: {
+                long: "content/Ablation/LongOnly/rank0-17-0_lora.mp4",
+                short: "content/Ablation/ShortOnly/rank0-17-0_lora.mp4",
+                none: "content/Ablation/NoMem/rank0-17-0_lora.mp4"
+            }
+        },
+        {
+            videos: {
+                long: "content/Ablation/LongOnly/rank0-18-0_lora.mp4",
+                short: "content/Ablation/ShortOnly/rank0-18-0_lora.mp4",
+                none: "content/Ablation/NoMem/rank0-18-0_lora.mp4"
+            }
+        },
+        {
+            videos: {
+                long: "content/Ablation/LongOnly/rank0-19-0_lora.mp4",
+                short: "content/Ablation/ShortOnly/rank0-19-0_lora.mp4",
+                none: "content/Ablation/NoMem/rank0-19-0_lora.mp4"
+            }
+        }
+    ],
+
+    // Define the showcases (4 rows x 3 videos).
+    showcases: [
+        {
+            videos: [
+                "content/Showcases/103-0_lora_2gpu.mp4",
+                "content/Showcases/24-0_lora_2gpu.mp4",
+                "content/Showcases/29-0_lora_2gpu.mp4"
             ]
         },
         {
-            duration: "Short Only",
-            badge: "Short",
-            examples: [
-                { video: "content/Ablation/ShortOnly/rank0-14-0_lora.mp4" },
-                { video: "content/Ablation/ShortOnly/rank0-15-0_lora.mp4" },
-                { video: "content/Ablation/ShortOnly/rank0-16-0_lora.mp4" },
-                { video: "content/Ablation/ShortOnly/rank0-17-0_lora.mp4" },
-                { video: "content/Ablation/ShortOnly/rank0-18-0_lora.mp4" },
-                { video: "content/Ablation/ShortOnly/rank0-19-0_lora.mp4" }
+            videos: [
+                "content/Showcases/30-0_lora_2gpu.mp4",
+                "content/Showcases/32-0_lora_2gpu.mp4",
+                "content/Showcases/40-0_lora_2gpu.mp4"
             ]
         },
         {
-            duration: "No Memory",
-            badge: "None",
-            examples: [
-                { video: "content/Ablation/NoMem/rank0-14-0_lora.mp4" },
-                { video: "content/Ablation/NoMem/rank0-15-0_lora.mp4" },
-                { video: "content/Ablation/NoMem/rank0-16-0_lora.mp4" },
-                { video: "content/Ablation/NoMem/rank0-17-0_lora.mp4" },
-                { video: "content/Ablation/NoMem/rank0-18-0_lora.mp4" },
-                { video: "content/Ablation/NoMem/rank0-19-0_lora.mp4" }
+            videos: [
+                "content/Showcases/52-0_lora_2gpu.mp4",
+                "content/Showcases/54-0_lora_2gpu.mp4",
+                "content/Showcases/64-0_lora_2gpu.mp4"
+            ]
+        },
+        {
+            videos: [
+                "content/Showcases/69-0_lora_2gpu.mp4",
+                "content/Showcases/8-0_lora_2gpu.mp4",
+                "content/Showcases/91-0_lora_2gpu.mp4"
             ]
         }
     ]
