@@ -567,7 +567,7 @@
             </div>
 
             <div class="authors">
-                <a href="https://scholar.google.com/citations?user=cKzTWrIAAAAJ&hl=en&oi=ao" class="author"
+                <a href="https://youngraekimm.github.io/" class="author"
                     target="_blank">Youngrae Kim<sup>*</sup></a>
                 <a href="https://scholar.google.com/citations?user=EqD5GP8AAAAJ&hl=en&oi=ao" class="author"
                     target="_blank">Qixin Hu<sup>*</sup></a>
@@ -665,7 +665,7 @@
                         Tokens:</strong>
                     <span
                         style="color: var(--primary-color); font-size: 1.1rem; line-height: 1.6; font-weight: 500;">Instead
-                        of dropping old tokens or keeping static anchors, we maintain a fixed number of 'memory tokens'
+                        of dropping old tokens or selecting and retaining discrete anchor tokens, we maintain a fixed number of 'memory tokens'
                         that continuously absorb information from new frames using an Exponential Moving Average (EMA).
                         This provides a compressed, evolving summary of the entire video history.</span>
                 </li>
@@ -716,9 +716,10 @@
                 MemRoPE exhibits strong prompt compliance, smooth transitions, and high long-range consistency while
                 enabling infinite video generation.
             </p>
-            <p style="text-align: center; margin-bottom: 5px; font-size: 0.95rem;">
-                Compared to ours, baseline methods such as LongLive, Infinite-RoPE, and Deep Forcing show weaker
-                long-range consistency and face quality degradation on longer videos.
+            <p style="text-align: center; margin-bottom: 5px;">
+                We evaluate MemRoPE alongside Deep Forcing and &infin;-RoPE on two autoregressive base
+                models: SelfForcing and LongLive, a long-video finetuned model. Baseline methods
+                show weaker long-range consistency and progressive quality degradation on longer videos.
             </p>
 
             <!-- Play speed controls -->
@@ -802,13 +803,20 @@
                 // Title
                 const title = document.createElement('h3');
                 title.className = 'comparison-duration-title';
-                title.textContent = comp.duration;
+                title.innerHTML = comp.duration;
+                if (comp.description) {
+                    const subtitle = document.createElement('span');
+                    subtitle.style.cssText = 'display: block; font-size: 0.9rem; font-weight: 400; color: var(--secondary-color); margin-top: 4px;';
+                    subtitle.textContent = comp.description;
+                    title.appendChild(subtitle);
+                }
                 container.appendChild(title);
 
-                // Headers
+                // Headers (use per-group methods)
+                const methods = comp.methods;
                 const headersDiv = document.createElement('div');
                 headersDiv.className = 'method-headers';
-                config.methods.forEach(method => {
+                methods.forEach(method => {
                     const header = document.createElement('div');
                     header.className = 'method-header';
 
@@ -817,14 +825,7 @@
                     nameDiv.textContent = method.title;
                     if (method.highlight) nameDiv.style.color = 'var(--accent-color)';
 
-                    const fpsDiv = document.createElement('div');
-                    fpsDiv.className = 'method-fps';
-                    if (method.fps) {
-                        fpsDiv.textContent = `Generation FPS: ${method.fps}`;
-                    }
-
                     header.appendChild(nameDiv);
-                    header.appendChild(fpsDiv);
                     headersDiv.appendChild(header);
                 });
                 container.appendChild(headersDiv);
@@ -834,7 +835,7 @@
                     const row = document.createElement('div');
                     row.className = 'comparison-row';
 
-                    config.methods.forEach(method => {
+                    methods.forEach(method => {
                         const cell = document.createElement('div');
                         cell.className = 'comparison-cell';
 
@@ -879,15 +880,17 @@
                 // Add Headers for Ablation
                 const ablHeadersDiv = document.createElement('div');
                 ablHeadersDiv.className = 'method-headers';
-                ablHeadersDiv.style.gridTemplateColumns = 'repeat(3, 1fr)';
+                ablHeadersDiv.style.gridTemplateColumns = 'repeat(4, 1fr)';
 
-                const ablTitles = ['Long Only', 'Short Only', 'No Memory'];
-                ablTitles.forEach(title => {
+                const ablTitles = ['No Memory', 'Long Only', 'Short Only', 'Both (Ours)'];
+                const ablHighlight = [false, false, false, true];
+                ablTitles.forEach((title, idx) => {
                     const header = document.createElement('div');
                     header.className = 'method-header';
                     const nameDiv = document.createElement('div');
                     nameDiv.className = 'method-name';
                     nameDiv.textContent = title;
+                    if (ablHighlight[idx]) nameDiv.style.color = 'var(--accent-color)';
                     header.appendChild(nameDiv);
                     ablHeadersDiv.appendChild(header);
                 });
@@ -896,9 +899,9 @@
                 config.ablations.forEach(ablation => {
                     const row = document.createElement('div');
                     row.className = 'comparison-row';
-                    row.style.gridTemplateColumns = 'repeat(3, 1fr)';
+                    row.style.gridTemplateColumns = 'repeat(4, 1fr)';
 
-                    const methods = ['long', 'short', 'none'];
+                    const methods = ['none', 'long', 'short', 'both'];
                     methods.forEach(method => {
                         const cell = document.createElement('div');
                         cell.className = 'comparison-cell';
