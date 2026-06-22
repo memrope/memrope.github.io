@@ -80,6 +80,11 @@
             flex-direction: column;
         }
 
+        .logo-row {
+            display: inline-block;
+            position: relative;
+        }
+
         .logo {
             width: 280px;
             height: auto;
@@ -108,6 +113,28 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             color: transparent;
+        }
+
+        .conference-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            left: calc(100% + 18px);
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 10px 20px;
+            color: #fef3c7;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.18rem;
+            font-weight: 700;
+            line-height: 1;
+            letter-spacing: 0.03em;
+            white-space: nowrap;
+            background: rgba(245, 158, 11, 0.16);
+            border: 1px solid rgba(250, 204, 21, 0.62);
+            border-radius: 999px;
+            box-shadow: 0 8px 24px rgba(245, 158, 11, 0.16);
         }
 
         .authors {
@@ -460,6 +487,17 @@
                 font-size: 2.2rem;
             }
 
+            .conference-badge {
+                left: 50%;
+                top: calc(100% + 12px);
+                transform: translateX(-50%);
+                font-size: 1rem;
+            }
+
+            .logo-row {
+                margin-bottom: 42px;
+            }
+
             section {
                 padding: 30px 20px;
             }
@@ -563,7 +601,10 @@
     <div class="container">
         <header id="header">
             <div class="title-container">
-                <img src="content/memrope_logo.png" alt="MemRoPE Logo" class="logo">
+                <div class="logo-row">
+                    <img src="content/memrope_logo.png" alt="MemRoPE Logo" class="logo">
+                    <div class="conference-badge">ECCV 2026</div>
+                </div>
                 <h1>MemRoPE: Training-Free Infinite Video Generation via Evolving Memory Tokens</h1>
             </div>
 
